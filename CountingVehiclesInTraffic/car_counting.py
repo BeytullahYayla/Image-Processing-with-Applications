@@ -5,6 +5,16 @@ vid = cv2.VideoCapture("C:\\Users\\Beytullah\\Documents\\GitHub\\Image-Processin
 backsub = cv2.createBackgroundSubtractorMOG2()
 c = 0
 
+frame_width = int(vid.get(3))
+frame_height = int(vid.get(4))
+
+size=(frame_width,frame_height)
+
+result = cv2.VideoWriter('Result.avi', 
+                         cv2.VideoWriter_fourcc(*'MJPG'),
+                         10, size)
+
+
 while True:
     ret,frame = vid.read()
     if ret:
@@ -29,6 +39,8 @@ while True:
 
         cv2.imshow("Car Counting",frame)
         cv2.imshow("fgmask",fgmask)
+
+        result.write(frame)
         
         if cv2.waitKey(40) & 0xFF==ord('q'):
             break
