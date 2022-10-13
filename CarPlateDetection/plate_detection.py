@@ -32,7 +32,7 @@ for cnt in cnts:
         break
 
 mask=np.zeros(shape=gray.shape,dtype=np.uint8)
-new_image=cv2.drawContours(mask,[screen],0,(255,255,255),-1)
+new_image,hierarchy=cv2.drawContours(mask,contours=screen,contourIdx=0,color=(255,255,255),thickness=-1)
 new_image=cv2.bitwise_and(img,img,mask)#It pastes img to mask field
 
 
